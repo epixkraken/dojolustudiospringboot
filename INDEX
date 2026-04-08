@@ -1,0 +1,285 @@
+Este es el codigo que generamos de html para el diseno de la pagina 
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DOJO LU Studio</title>
+    <style>
+        /* Paleta de Colores Nórdicos minimalistas con Morado Lavanda */
+        :root {
+            --lavender-light: #e6e6fa; /* Lavanda muy claro */
+            --lavender-mid: #d1c4e9;   /* Lavanda medio para acentos */
+            --nordic-grey: #e0e0e0;     /* Gris nórdico claro */
+            --dark-grey: #424242;       /* Gris oscuro para texto */
+            --white: #ffffff;
+            --bg-color: #f5f5f7;        /* Fondo muy claro y limpio */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--dark-grey);
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Tipografía limpia y moderna */
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr; /* Tres columnas para el diseño */
+            min-height: 100vh;
+        }
+
+        /* Imágenes Decorativas Laterales */
+        .side-image {
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6; /* Un toque sutil */
+        }
+
+        .left-image {
+            background-image: url('https://images.unsplash.com/photo-1620207418302-439b387441b0?q=80&w=600&auto=format&fit=crop'); /* Patrón minimalista morado claro */
+            border-right: 1px solid var(--nordic-grey);
+        }
+
+        .right-image {
+            background-image: url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=600&auto=format&fit=crop'); /* Otra textura minimalista suave */
+            border-left: 1px solid var(--nordic-grey);
+        }
+
+        /* Columna Central */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.04); /* Sombra muy suave */
+            width: 100%;
+            max-width: 480px;
+        }
+
+        h2 { 
+            color: var(--lavender-mid); 
+            font-weight: 300; 
+            letter-spacing: -1.5px; 
+            margin-top: 0; 
+            font-size: 2.2rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            margin: 12px 0;
+            border: 1px solid #eee;
+            border-radius: 14px;
+            background: #fcfcfc;
+            outline: none;
+            box-sizing: border-box; /* Importante para el padding */
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--lavender-mid);
+            box-shadow: 0 0 0 3px rgba(209, 196, 233, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--lavender-mid);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover { 
+            filter: brightness(0.92); 
+            transform: translateY(-2px);
+        }
+
+        /* Sección de Cache Aesthetic */
+        .cache-section {
+            margin-top: 25px;
+            padding: 20px;
+            background: var(--lavender-light);
+            border-radius: 16px;
+            font-size: 0.95em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cache-text strong {
+            color: var(--dark-grey);
+        }
+
+        #cacheVal {
+            color: var(--lavender-mid);
+            font-weight: 600;
+        }
+
+        .refresh-btn {
+            font-size: 0.75em; 
+            padding: 8px 12px; 
+            background: var(--white); 
+            color: var(--lavender-mid);
+            border: 1px solid var(--lavender-mid);
+            width: auto;
+            margin-top: 0;
+        }
+
+        .refresh-btn:hover {
+            background: var(--lavender-mid);
+            color: var(--white);
+        }
+
+        /* Lista de Personas Aesthetic */
+        #lista { 
+            margin-top: 30px; 
+            border-top: 1px solid #f0f0f0; 
+            padding-top: 20px; 
+        }
+
+        h3 { 
+            color: #757575; 
+            font-weight: 400; 
+            margin-bottom: 15px;
+        }
+
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        li { 
+            padding: 15px; 
+            border-bottom: 1px solid #f8f8f8; 
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+
+        li:hover {
+            background-color: #fafafa;
+        }
+
+        li span.name {
+            font-size: 1.1em;
+            color: var(--dark-grey);
+        }
+
+        li b.lastname {
+            color: var(--lavender-mid);
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="side-image left-image"></div>
+
+    <div class="main-content">
+        <div class="card">
+            <h2>DOJO LU Studio</h2>
+            
+            <input type="text" id="fn" placeholder="Nombre">
+            <input type="text" id="ln" placeholder="Apellido">
+            <button onclick="guardar()">Guardar Persona</button>
+
+            <div class="cache-section">
+                <div class="cache-text">
+                    <strong>Cache Singleton:</strong> <br>
+                    Último ingreso: <span id="cacheVal">Cargando...</span>
+                </div>
+                <button class="refresh-btn" onclick="verCache()">Refrescar</button>
+            </div>
+
+            <div id="lista">
+                <h3>Personas Registradas</h3>
+                <ul id="personasUl"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="side-image right-image"></div>
+
+<script>
+    const API = "http://localhost:8080/people";
+
+    async function guardar() {
+        const fn = document.getElementById('fn').value;
+        const ln = document.getElementById('ln').value;
+        
+        if(!fn || !ln) return alert("Porfa, llena los dos campos bb.");
+
+        const data = { firstName: fn, lastName: ln };
+        
+        try {
+            const response = await fetch(API, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+
+            if(response.ok) {
+                document.getElementById('fn').value = '';
+                document.getElementById('ln').value = '';
+                cargar(); // Refrescar lista
+                verCache(); // Refrescar cache (el backend debe haberlo actualizado)
+            } else {
+                alert("Error al guardar. Revisa la consola.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+
+    async function cargar() {
+        try {
+            const res = await fetch(API);
+            const data = await res.json();
+            const ul = document.getElementById('personasUl');
+            ul.innerHTML = '';
+            
+            const personas = data._embedded.people;
+            
+            if (personas.length === 0) {
+                ul.innerHTML = '<li style="color:#aaa; justify-content:center;">Aún no hay nadie</li>';
+                return;
+            }
+
+            personas.forEach(p => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="name">${p.firstName}</span> <b class="lastname">${p.lastName}</b>`;
+                ul.appendChild(li);
+            });
+        } catch (error) {
+            console.log("Error al cargar personas.");
+        }
+    }
+
+    async function verCache() {
+        try {
+            const res = await fetch("http://localhost:8080/api/cache");
+            const texto = await res.text();
+            document.getElementById('cacheVal').innerText = texto;
+        } catch (error) {
+            document.getElementById('cacheVal').innerText = "N/A";
+        }
+    }
+
+    // Iniciar automáticamente
+    cargar();
+    verCache();
+</script>
+
+</body>
+</html>
