@@ -1,0 +1,13 @@
+## aqui estan los codigos que se ingresaron en la terminal
+## para poder tener datos dentro de nuestra app REST
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+Instale la versión más reciente de PowerShell para obtener nuevas características y mejoras. https://aka.ms/PSWindows
+
+PS C:\Users\epix> Invoke-RestMethod -Uri http://localhost:8080/people -Method Post -ContentType "application/json" -Body '{"firstName": "Rocco", "lastName": "Epix"}'
+
+PS C:\Users\epix> Invoke-RestMethod -Uri http://localhost:8080/people -Method Post -ContentType "application/json" -Body '{"firstName": "Louie", "lastName": "Maui"}'
+
+PS C:\Users\epix>
